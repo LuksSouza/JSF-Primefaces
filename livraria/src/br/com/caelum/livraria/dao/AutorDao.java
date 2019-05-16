@@ -7,5 +7,7 @@ public class AutorDao {
 	
 	@Inject
 	private EntityManager em;
+	
+	public 
 
 }
