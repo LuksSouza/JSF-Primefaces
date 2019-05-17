@@ -9,8 +9,7 @@ import javax.persistence.Persistence;
 
 public class JPAUtil {
 
-	private static EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("livraria");
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("livraria");
 
 	@Produces
 	@RequestScoped

@@ -9,6 +9,8 @@ import javax.inject.Named;
 @SessionScoped
 public class TemaBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private String tema = "flick";
 
 	public String getTema() {
