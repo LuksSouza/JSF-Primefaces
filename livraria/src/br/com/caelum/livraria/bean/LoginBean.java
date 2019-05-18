@@ -14,6 +14,8 @@ import br.com.caelum.livraria.modelo.Usuario;
 @ViewScoped
 public class LoginBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Usuario usuario = new Usuario();
 
 	public Usuario getUsuario() {
