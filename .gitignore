@@ -47,3 +47,9 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+
+# Build classes
+livraria/build/
+
+# Server
+Servers/
