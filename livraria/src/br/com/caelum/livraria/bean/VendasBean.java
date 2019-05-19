@@ -62,6 +62,7 @@ public class VendasBean implements Serializable {
 			vendaSeries.set(venda.getLivro().getTitulo(), venda.getQuantidade());
 		}
 
+	    model.setAnimate(true);
 	    model.addSeries(vendaSeries);
 
 	    return model;
