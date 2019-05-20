@@ -20,6 +20,9 @@ public class LoginBean implements Serializable {
 	@Inject
 	private UsuarioDao usuarioDao;
 	
+	@Inject
+	private FacesContext context;
+	
 	private Usuario usuario = new Usuario();
 
 	public Usuario getUsuario() {
@@ -29,24 +32,22 @@ public class LoginBean implements Serializable {
 	public String efetuaLogin() {
 		System.out.println("fazendo login do usuario " + this.usuario.getEmail());
 		
-		FacesContext context = FacesContext.getCurrentInstance();
-		//boolean existe = new UsuarioDao().existe(this.usuario);
 		boolean existe = this.usuarioDao.existe(this.usuario);
 		
 		if(existe ) {
-			context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
+			this.context.getExternalContext().getSessionMap().put("usuarioLogado", this.usuario);
 			return "livro?faces-redirect=true";
 		}
 		
-		context.getExternalContext().getFlash().setKeepMessages(true);
-		context.addMessage(null, new FacesMessage("Usuário não encontrado"));
+		this.context.getExternalContext().getFlash().setKeepMessages(true);
+		this.context.addMessage(null, new FacesMessage("Usuário não encontrado"));
 		
 		return "login?faces-redirect=true";
 	}
 	
 	public String deslogar() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		this.context.getExternalContext().getSessionMap().remove("usuarioLogado");
+		
 		return "login?faces-redirect=true";
 	}
 }

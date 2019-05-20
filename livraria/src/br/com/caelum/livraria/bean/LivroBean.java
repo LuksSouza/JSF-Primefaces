@@ -29,8 +29,12 @@ public class LivroBean implements Serializable {
 	
 	@Inject
 	private LivroDao livroDao;
+	
 	@Inject
 	private AutorDao autorDao;
+	
+	@Inject
+	private FacesContext context;
 
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
@@ -45,7 +49,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public List<Livro> getLivros() {
-		if(this.livros == null) {
+		if (this.livros == null) {
 			this.livros = this.livroDao.listaTodos();			
 		}
 		
@@ -75,11 +79,11 @@ public class LivroBean implements Serializable {
 		System.out.println("Gravando livro " + this.livro.getTitulo());
 
 		if (livro.getAutores().isEmpty()) {
-			FacesContext.getCurrentInstance().addMessage("autor", new FacesMessage("Livro deve ter pelo menos um Autor."));
+			this.context.addMessage("autor", new FacesMessage("Livro deve ter pelo menos um Autor."));
 			return;
 		}
 		
-		if(this.livro.getId() == null) {
+		if (this.livro.getId() == null) {
 			this.livroDao.adiciona(this.livro);
 			this.livros = this.livroDao.listaTodos();
 		} else {
@@ -112,13 +116,12 @@ public class LivroBean implements Serializable {
 		return "autor?faces-redirect=true";
 	}
 
-	public void comecaComDigitoUm(FacesContext fc, UIComponent component,
-			Object value) throws ValidatorException {
+	public void comecaComDigitoUm(FacesContext fc, UIComponent component, Object value) throws ValidatorException {
 
 		String valor = value.toString();
+		
 		if (!valor.startsWith("1")) {
 			throw new ValidatorException(new FacesMessage("ISBN deveria começar com 1"));
 		}
-
 	}
 }
