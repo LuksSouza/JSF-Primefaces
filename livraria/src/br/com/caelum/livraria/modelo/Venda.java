@@ -18,6 +18,8 @@ public class Venda {
 	
 	private Integer quantidade;
 	
+	public Venda() {}
+	
 	public Venda(Livro livro, Integer quantidade) {
 		this.livro = livro;
 		this.quantidade = quantidade;

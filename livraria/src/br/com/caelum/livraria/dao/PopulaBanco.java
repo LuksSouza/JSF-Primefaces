@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 
@@ -49,10 +50,31 @@ public class PopulaBanco {
 		em.persist(alquemista);
 		em.persist(brida);
 		em.persist(valkirias);
-		em.persist(maao);em.persist(capitaes);
+		em.persist(maao);
+		em.persist(capitaes);
 		em.persist(flor);
 
-		Venda venda = new Ven
+		Random random = new Random(1234);
+
+		Venda vendaCasmurro = new Venda(casmurro, random.nextInt(500));
+		Venda vendaMemorias = new Venda(memorias, random.nextInt(500));
+		Venda vendaQuincas = new Venda(quincas, random.nextInt(500));
+		Venda vendaAlquimista = new Venda(alquemista, random.nextInt(500));
+		Venda vendaBrida = new Venda(brida, random.nextInt(500));
+		Venda vendaValkirias = new Venda(valkirias, random.nextInt(500));
+		Venda vendaMaao = new Venda(maao, random.nextInt(500));
+		Venda vendaCapitaes = new Venda(capitaes, random.nextInt(500));
+		Venda vendaFlor = new Venda(flor, random.nextInt(500));
+
+		em.persist(vendaCasmurro);
+		em.persist(vendaMemorias);
+		em.persist(vendaQuincas);
+		em.persist(vendaAlquimista);
+		em.persist(vendaBrida);
+		em.persist(vendaValkirias);
+		em.persist(vendaMaao);
+		em.persist(vendaCapitaes);
+		em.persist(vendaFlor);
 		
 		em.getTransaction().commit();
 		em.close();

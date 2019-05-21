@@ -17,16 +17,8 @@ public class UsuarioDao implements Serializable {
 	@Inject
 	private EntityManager em;
 	
-	private DAO<Usuario> dao;
-	
-	@PostConstruct
-	public void init() {
-		this.dao = new DAO<Usuario>(em, Usuario.class);
-	}
-	
 	public boolean existe(Usuario usuario) {
-		
-		//EntityManager em = new JPAUtil().getEntityManager();
+
 		TypedQuery<Usuario> query = em.createQuery(
 				  " select u from Usuario u "
 				+ " where u.email = :pEmail and u.senha = :pSenha", Usuario.class);
@@ -35,13 +27,10 @@ public class UsuarioDao implements Serializable {
 		query.setParameter("pSenha", usuario.getSenha());
 		
 		try {
-			//Usuario resultado =  
 			query.getSingleResult();
 		} catch (NoResultException ex) {
 			return false;
 		}
-		
-		//em.close();
 		
 		return true;
 	}
